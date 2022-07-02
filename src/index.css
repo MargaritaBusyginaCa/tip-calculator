@@ -1,0 +1,18 @@
+/* - Mobile: 375px
+- Desktop: 1440px */
+
+:root{
+    --clr-primary:hsl(172, 67%, 45%);
+    --clr-dark:hsl(183, 100%, 15%);
+    --clr-gray-cyan:hsl(184, 14%, 56%);
+    --clr-light-gray:hsl(185, 41%, 84%);
+    --clr-chalk:hsl(189, 41%, 97%);
+    --clr-white:hsl(0, 0%, 100%);
+}
+body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Space Mono', monospace;
+    background-color: var(--clr-light-gray);
+}
