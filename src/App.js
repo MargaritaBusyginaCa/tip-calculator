@@ -12,22 +12,23 @@ function App(){
     const tipOptions = [5, 10, 15, 25, 50]
     const tipsDisplay = tipOptions.map(tip =>{
         return(
-            <div>
-             <input type="radio" name="tip" value={tip}/>
-             <label for="html">{tip}%</label>   
+            <div className="tip-radio--container">
+             {/* <input type="radio" name="tip" value={tip} className="radio-btn"/>
+             <label for="html" className="radio-label">{tip}%</label>    */}
+             <button key={tip} value={tip} className="radio-btn">{tip}%</button>
             </div>
         )
     })
     return(
         <div className="parent">
-          <h1>Splitter</h1>
+          <img src={require("../images/logo.svg").default} className="logo"/>
 
           <div className="splitter--container">
            <div className="input--container">
             <div className="bill">
-                <h2>bill</h2>
+                <h2>Bill</h2>
                 <div className="input--container">
-                 <input type="number"/>
+                 <input type="number" className="input"/>
                 </div>
             </div>{/**end of bill */}
             <div className="tip--container">
@@ -42,7 +43,7 @@ function App(){
             <div className="people--number">
               <h2>Number of People</h2>
               <div className="input--container">
-                <input type="number"/>
+                <input type="number" className="input"/>
               </div>
             </div>
            </div>{/**end of input--container */}
@@ -63,6 +64,8 @@ function App(){
               </div>   
               <h1>$32.79</h1>
             </div>
+
+            <button>Reset</button>
 
            </div>
           </div>
