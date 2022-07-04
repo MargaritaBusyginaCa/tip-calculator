@@ -1,10 +1,10 @@
-import React, {useState} from "react";
-import "./index.css"
+import React, {useState, useEffect} from "react";
+import "../src/index.css"
 function App(){
     const [formData, setFormData] = useState({
-        bill:0,
-        tip:0,
-        numberOfPeople:0
+        bill:"",
+        tip:"",
+        numberOfPeople:""
     })
     const [reload, setReload] = useState(false)
     const [tipTotal, setTipTotal] = useState(0)
@@ -13,12 +13,51 @@ function App(){
     const tipsDisplay = tipOptions.map(tip =>{
         return(
             <div className="tip-radio--container">
-             {/* <input type="radio" name="tip" value={tip} className="radio-btn"/>
-             <label for="html" className="radio-label">{tip}%</label>    */}
-             <button key={tip} value={tip} className="radio-btn">{tip}%</button>
+             <button key={tip} className="radio-btn" onClick={handleChange} name="tip" value={tip}>{tip}%</button>
             </div>
         )
     })
+    function handleChange (event){
+      const {name, value} = event.target
+      setFormData(prevData =>({
+        ...prevData,
+        [name]:value
+      }))
+      setReload(!reload)
+    }
+
+    useEffect(() =>{
+      calculateTotal()  
+    }, [reload])
+
+    function calculateTotal(){
+      if(!formData.bill){
+        return false
+      }else if(!formData.tip){
+        return false
+      }else if(!formData.numberOfPeople){
+        return false
+      }else{
+        let tips = formData.bill * (formData.tip / 100)
+        if(formData.numberOfPeople == 0){
+          return false
+        }
+        setTotalPerPerson(((+formData.bill + +tips) / formData.numberOfPeople).toFixed(1))
+        setTipTotal((tips / formData.numberOfPeople).toFixed(1))
+      }
+    }
+
+    function reset(){
+      setFormData({
+        bill:"",
+        tip:"",
+        numberOfPeople:""
+      })
+      setTipTotal(0)
+      setTotalPerPerson(0)
+      setReload(!reload)
+      console.log(formData)
+    }
     return(
         <div className="parent">
           <img src={require("../images/logo.svg").default} className="logo"/>
@@ -28,7 +67,7 @@ function App(){
             <div className="bill">
                 <h2>Bill</h2>
                 <div className="input--container">
-                 <input type="number" className="input"/>
+                 <input type="number" className="input" name="bill" onChange={handleChange} value={formData.bill}/>
                 </div>
             </div>{/**end of bill */}
             <div className="tip--container">
@@ -36,36 +75,36 @@ function App(){
                 <div className="tip-grid">
                     {tipsDisplay}
                     <div className="custom--tip">
-                     <input placeholder="Custom" type="number"/> 
+                     <input placeholder="Custom" type="number" name="tip" onChange={handleChange} value={formData.tip}/> 
                     </div>
                 </div>
             </div>{/**end of bill */}
             <div className="people--number">
               <h2>Number of People</h2>
               <div className="input--container">
-                <input type="number" className="input"/>
+                <input type="number" className="input" name="numberOfPeople" onChange={handleChange} value={formData.numberOfPeople}/>
               </div>
             </div>
            </div>{/**end of input--container */}
 
            <div className="output--container">
-            <div className="tip--final">
+            <div className="tip--final final">
               <div>
-               <h2>Tip Amount</h2>
-               <h3>/ person</h3>
+               <h3>Tip Amount</h3>
+               <h4>/ person</h4>
               </div>   
-              <h1>$4.27</h1>
+              <h1>{tipTotal}</h1>
             </div>
 
-            <div className="total--final">
+            <div className="total--final final">
               <div>
-               <h2>Total</h2>
-               <h3>/ person</h3>
+               <h3>Total</h3>
+               <h4>/ person</h4>
               </div>   
-              <h1>$32.79</h1>
+              <h1>{totalPerPerson}</h1>
             </div>
 
-            <button>Reset</button>
+            <button className="reset-btn" onClick={reset}>Reset</button>
 
            </div>
           </div>
