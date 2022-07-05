@@ -18,11 +18,13 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
 }
 .input--container{
     display: flex;
     flex-direction: column;
     gap: 30px;
+    
 }
 .logo{
   padding: 3.5rem;
@@ -38,6 +40,7 @@ h2{
     display: flex;
     background-color: var(--clr-white);
     border-radius: 15px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .input{
     width: 100%;
@@ -119,6 +122,18 @@ h2{
 .radio-btn:focus{
     background-color: var(--clr-primary);
     color: var(--clr-dark);
+}
+
+@media (max-width: 732px) {
+   .splitter--container{
+    flex-direction: column;
+   } 
+   .output--container{
+    margin: 0;
+   }
+   .final{
+    justify-content: space-between;
+   }
 }
 
 input::-webkit-outer-spin-button,

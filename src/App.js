@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "../src/index.css"
+import { nanoid } from 'nanoid'
+
 function App(){
     const [formData, setFormData] = useState({
         bill:"",
@@ -13,7 +15,7 @@ function App(){
     const tipsDisplay = tipOptions.map(tip =>{
         return(
             <div className="tip-radio--container">
-             <button key={tip} className="radio-btn" onClick={handleChange} name="tip" value={tip}>{tip}%</button>
+             <button className="radio-btn" name="tip" value={tip} onClick={handleChange}>{tip}%</button>
             </div>
         )
     })
@@ -58,6 +60,7 @@ function App(){
       setReload(!reload)
       console.log(formData)
     }
+
     return(
         <div className="parent">
           <img src={require("../images/logo.svg").default} className="logo"/>
