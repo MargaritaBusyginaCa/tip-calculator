@@ -106,7 +106,7 @@ function App(){
                <h3>Tip Amount</h3>
                <h4>/ person</h4>
               </div>   
-              <h1>{tipTotal}</h1>
+              <h1>${tipTotal}</h1>
             </div>
 
             <div className="total--final final">
@@ -114,7 +114,7 @@ function App(){
                <h3>Total</h3>
                <h4>/ person</h4>
               </div>   
-              <h1>{totalPerPerson}</h1>
+              <h1>${totalPerPerson}</h1>
             </div>
 
             <button className="reset-btn" onClick={reset}>Reset</button>
