@@ -90,6 +90,7 @@ h2{
 .final{
     display: flex;
     justify-content: space-around;
+    gap: 50px;
 }
 .final h1{
     color: var(--clr-primary);
@@ -123,7 +124,23 @@ h2{
     background-color: var(--clr-primary);
     color: var(--clr-dark);
 }
-
+.label-people{
+  display: flex;
+  justify-content: space-between;
+}
+.hide{
+    display: none;
+}
+.warning-label{
+    color: rgb(214, 97, 97); 
+}
+.warning{
+    border: 2px solid rgb(214, 97, 97);
+    border-radius: 6px;
+}
+.warning--hide{
+  border: none;  
+}
 @media (max-width: 732px) {
    .splitter--container{
     flex-direction: column;
@@ -133,6 +150,7 @@ h2{
    }
    .final{
     justify-content: space-between;
+    gap: 0;
    }
 }
 

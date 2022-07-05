@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import "../src/index.css"
 import { nanoid } from 'nanoid'
 
 function App(){
+    const refHeader = useRef()
+    const refInput = useRef()
     const [formData, setFormData] = useState({
         bill:"",
         tip:"",
@@ -42,7 +44,12 @@ function App(){
       }else{
         let tips = formData.bill * (formData.tip / 100)
         if(formData.numberOfPeople == 0){
+          refHeader.current.className = "warning-label"
+          refInput.current.className = "input--container warning"
           return false
+        }else{
+          refHeader.current.className = "hide"
+          refInput.current.className = "input--container warning--hide"
         }
         setTotalPerPerson(((+formData.bill + +tips) / formData.numberOfPeople).toFixed(1))
         setTipTotal((tips / formData.numberOfPeople).toFixed(1))
@@ -83,8 +90,11 @@ function App(){
                 </div>
             </div>{/**end of bill */}
             <div className="people--number">
-              <h2>Number of People</h2>
-              <div className="input--container">
+              <div className="label-people">
+              <h2>Number of People</h2> 
+              <h2 className="hide" ref={refHeader}>Can't be zero</h2>
+              </div>
+              <div className="input--container warning--hide" ref={refInput}>
                 <input type="number" className="input" name="numberOfPeople" onChange={handleChange} value={formData.numberOfPeople}/>
               </div>
             </div>
